@@ -1,0 +1,26 @@
+<div class="modal-content modal-lg">
+  <div class="modal-header">
+    <h2 class="modal-title" style="font-size: 2.5em">{{thisEntry.firstName}} {{thisEntry.lastName}}</h2>
+  </div>
+
+  <div class="modal-body">
+
+  <div class="media">
+    <div class="media-left media-middle">
+
+      <img class="media-object img-circle" src="{{thisEntry.image}}">
+
+    </div>
+
+    <div class="media-body" style="margin-right: 30%">
+      <h4 class="media-heading" ng-if="thisEntry.phone" style="font-size: 1.8em">Phone : {{thisEntry.phone}}</h4>
+      <h4 class="media-heading" ng-if="thisEntry.email" style="font-size: 1.8em">Email : <a href="mailto:{{thisEntry.email}}">{{thisEntry.email}}</a></h4>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-lg btn-warning pull-left" type="button" ng-click="closeMe()">Close</button>
+    <button class="btn btn-lg btn-info pull-right" ng-click="updateContact(thisEntry)"><span class="glyphicon glyphicon-pencil"></span></button>
+
+  </div>
+</div>

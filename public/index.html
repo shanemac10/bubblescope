@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bubblescope - Your Contact List</title>
+    <link rel="icon" href="images/45.png"></link>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+
+    <script>
+      angular.module('mainApp', ['ui.bootstrap']);
+
+      angular.module('mainApp').controller('mainCtrl', function($scope,$http,$uibModal){
+
+        var promise = $http.get('/listReturn');
+        promise.then(httpSuccess, httpError);
+        function httpSuccess(response) {$scope.entryList = response.data;}
+        function httpError(response) {console.log('http error : ', response);}
+
+        function getList() {
+          $http.get('/listReturn').then(function(response){
+            $scope.entryList = response.data;
+          });
+        }
+
+
+
+
+        $scope.addContact = function(bubbleBack) {   //this is called when Add Contact clicked, and opens a modal window
+
+          var modalInstance = $uibModal.open({
+            templateUrl: 'addcontact.html',   //loads html template
+            controller: 'addcontactCtrl',   //loads modal controller for this instance
+            resolve: {
+              bubblePass: function() {return bubbleBack;}		//brings a passed post along for the ride
+            }
+          });
+          modalInstance.result.then(function() {			//then refresh the list after modal closes
+            getList();
+          });
+
+        }  //end addContact()
+
+        $scope.viewContact = function(bubbleBack) {   //this is called when image is clicked, and opens a modal window
+
+          var modalInstance = $uibModal.open({
+            templateUrl: 'contactview.html',   //loads html template
+            controller: 'contactviewCtrl',   //loads modal controller for this instance
+            resolve: {
+              bubblePass: function() {return bubbleBack;}		//brings a passed post along for the ride
+            }
+          });
+          modalInstance.result.then(function() {			//then refresh the list after modal closes
+            getList();
+          });
+
+        } // end viewContact()
+
+      }); // End bubbleCtrl
+
+      angular.module('mainApp').controller('addcontactCtrl', function($scope,$uibModal,$uibModalInstance,$http,bubblePass) {		// Inject our dependencies and postPass
+
+        $scope.newEntry = angular.copy(bubblePass); //populates the form with the data in the postBack that we passed as postPass here
+
+        $scope.saveEntry = function() {  //What happens when saveButton is clicked
+
+          var picNumber= Math.floor((Math.random() * 12) + 1);
+          $scope.newEntry.image = "images/"+picNumber+".png"; //assigns a ramdom pic from the 12 options
+
+          $http.post('/listReturn',$scope.newEntry).then(function(response){  // Pushes the post to the server, where it will be added or updated accordingly
+            $uibModalInstance.close();
+          });
+
+        }
+
+        $scope.cancel = function() {  // What happens when the Cancel button is clicked
+          $uibModalInstance.dismiss();   // drops out of the modal via Cancel button
+        }
+      }); //End addcontactCtrl
+
+
+
+
+      // contactviewCtrl
+      angular.module('mainApp').controller('contactviewCtrl', function($scope,$uibModal,$uibModalInstance,$http,bubblePass) {		// Inject our dependencies and postPass
+
+        $scope.thisEntry = angular.copy(bubblePass); //populates the form with the data in the postBack that we passed as postPass here
+
+
+        function getOne(findMe) {
+          $http.get('listReturn/byId/'+findMe._id).then(function(response){
+            $scope.thisEntry = angular.copy(response.data);
+          });
+        }
+
+        $scope.closeMe = function(){
+          $uibModalInstance.close();
+        }
+
+        // $scope.thisEntry = getOne(bubblePass);
+
+        $scope.updateContact = function(bubbleBack) {   //this is called when Edit is clicked, and opens a modal window
+
+          //$uibModalInstance.dismiss(); //close current modal???
+
+          var modalInstance = $uibModal.open({
+            templateUrl: 'updatecontact.html',   //loads html template
+            controller: 'updatecontactCtrl',   //loads modal controller for this instance
+            resolve: {
+              bubblePass: function() {return bubbleBack;}		//brings a passed post along for the ride
+            }
+          });
+          modalInstance.result.then(function(res) {			//then refresh the view modal after edit modal closes
+            getOne(res);  //??????
+          });
+
+        }
+      }); //End contactviewCtrl
+
+      angular.module('mainApp').controller('updatecontactCtrl', function($scope,$uibModal,$uibModalInstance,$http,bubblePass) {		// Inject our dependencies and postPass
+
+        function getOne(findMe) {
+          $http.get('listReturn/byId/'+findMe._id).then(function(response){
+            return response.data;
+          });
+        }
+        // $scope.thisEntry = angular.copy(bubblePass); //populates the form with the data in the postBack that we passed as postPass here
+        $scope.thisEntry = angular.copy(bubblePass);
+
+        $scope.saveEntry = function() {  //What happens when saveButton is clicked
+
+          $http.post('/listReturn',$scope.thisEntry).then(function(response){  // Pushes the post to the server, where it will be added or updated accordingly
+            $uibModalInstance.close();
+          });
+        }
+
+        $scope.killEntry = function(killMe) {  // What happens when the Delete button is clicked
+          $http.delete('/listReturn/'+killEntry._id).then(function(){    // deletes the selected from the database
+            $uibModalInstance.close();
+          });
+        }
+
+        $scope.cancel = function() {  // What happens when the Cancel button is clicked
+          $uibModalInstance.dismiss();   // drops out of the modal via Cancel button
+        }
+
+      }); //End updatecontactCtrl
+
+
+    </script>
+
+
+
+  </head>
+  <body ng-app="mainApp" ng-controller="mainCtrl">
+    <div class="jumbotron" style=" padding-top: 60px">
+      <div class="container text-center">
+        <img src="images/45.png" class="img-circle" style="background-color: white">
+        <h1><span style="color:#00b8ff">Bubble</span><span style="color:white">scope</span></h1>
+        <p>Welcome to your personal bubble</p>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+
+          <span class="glyphicon glyphicon-plus-sign pull-left" ng-click="addContact()" style="font-size:1.5em;color:#00b8ff; margin-top: 10px"></span>
+          <p class="navbar-text">Add a contact</p>
+
+          <div class="pull-right">
+            <div class="pull-left"style="margin-top: 15px">
+              <span class="label" style="background-color:#00b8ff; font-size: 1.3em; font-weight: 400">Sort these bubbles by...</span>
+            </div>
+            <div class="btn-group pull-right" role="group" style="padding-top: 8px">
+              <button type="button" class="btn btn-default">First Name</button>
+              <button type="button" class="btn btn-default">Last Name</button>
+              <!-- <button type="button" class="btn btn-default">Email</button> -->
+            </div>
+          </div>
+
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search Your Bubble">
+            </div>
+            <button type="submit" class="btn btn-info" style="background-color:#00b8ff; font-weight: 400">Submit</button>
+          </form>
+      </div>
+
+
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 text-center"  ng-repeat="entry in entryList">
+          <div class="text-center" ng-click="viewContact(entry)">
+            <img src="{{entry.image}}" class="img-circle" style="width:140px">
+            <h3>{{entry.firstName}}</h3>
+            <p>{{entry.lastName}}</p>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
