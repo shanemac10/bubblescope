@@ -4,7 +4,8 @@
   "description": "",
   "main": "contactserver.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node contactserver.js"
   },
   "repository": {
     "type": "git",
@@ -12,9 +13,7 @@
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/shanemac10/bubblescope/issues"
-  },
+
   "homepage": "https://github.com/shanemac10/bubblescope#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
