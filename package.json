@@ -1,0 +1,24 @@
+{
+  "name": "week7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "contactserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanemac10/bubblescope.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shanemac10/bubblescope/issues"
+  },
+  "homepage": "https://github.com/shanemac10/bubblescope#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.7"
+  }
+}
