@@ -8,13 +8,17 @@
   <div class="media">
     <div class="media-left media-middle">
 
-      <img class="media-object img-circle" src="{{thisEntry.image}}">
+      <img class="media-object img-circle" ng-src="{{thisEntry.image}}" style="width: 280px">
 
     </div>
 
     <div class="media-body" style="margin-right: 30%">
-      <h4 class="media-heading" ng-if="thisEntry.phone" style="font-size: 1.8em">Phone : {{thisEntry.phone}}</h4>
-      <h4 class="media-heading" ng-if="thisEntry.email" style="font-size: 1.8em">Email : <a href="mailto:{{thisEntry.email}}">{{thisEntry.email}}</a></h4>
+      <h4 class="media-heading" ng-if="thisEntry.phone" style="font-size: 1.8em"><small style="color: #999">Phone : </small><br>{{thisEntry.phone}}</h4>
+      <h4 class="media-heading" ng-if="thisEntry.email" style="font-size: 1.8em"><small style="color: #999">Email : </small><br><a href="mailto:{{thisEntry.email}}">{{thisEntry.email}}</a></h4>
+      <h4 class="media-heading" ng-if="thisEntry.street" style="font-size: 1.8em"><small style="color: #999">Street Address : </small><br>{{thisEntry.street}}</h4>
+      <h4 class="media-heading" ng-if="thisEntry.city || thisEntry.state || thisEntry.postalCode" style="font-size: 1.8em"><small style="color: #999">City | State | Postal Code : </small><br>{{thisEntry.city}}, {{thisEntry.state}} &nbsp;&nbsp; {{thisEntry.postalCode}}</h4>
+
+
     </div>
   </div>
 

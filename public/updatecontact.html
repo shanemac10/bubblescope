@@ -25,6 +25,26 @@
       <input type="email" class="form-control" ng-model="thisEntry.email">
     </div>
 
+    <div class="form-group">
+      <label>Street Address</label>
+      <input type="email" class="form-control" ng-model="thisEntry.street">
+    </div>
+
+    <div class="form-group">
+      <label>City</label>
+      <input type="email" class="form-control" ng-model="thisEntry.city">
+    </div>
+
+    <div class="form-group">
+      <label>State / Provence</label>
+      <input type="email" class="form-control" ng-model="thisEntry.state">
+    </div>
+
+    <div class="form-group">
+      <label>Zip / Postal Code</label>
+      <input type="email" class="form-control" ng-model="thisEntry.postalCode">
+    </div>
+
 
   </form>
 </div>
@@ -32,6 +52,6 @@
 <div class="modal-footer">
   <input type="button" class="btn btn-info text-center" ng-click="saveEntry()" value="Save" ng-disabled="!thisEntry.firstName || !thisEntry.lastName">
   <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-  <button class="btn btn-danger" type="button" ng-click="killEntry(thisEntry)">Delete</button>
+  <button class="btn btn-danger" type="button" ng-click="killEntry()">Delete</button>
 
 </div>

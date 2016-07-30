@@ -5,7 +5,11 @@ var ContactEntry = mongoose.model('ContactEntry', {
   lastName: String,
   phone: String,
   email: String,
-  image: String
+  image: String,
+  street: String,
+  city: String,
+  state: String,
+  postalCode: String
 
 });
 
