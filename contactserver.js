@@ -3,8 +3,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb://localhost/okcoders');      // for localhost-ing for deveolpment
-// mongoose.connect('mongodb://okcoders:okcoders@okcoders.co/shane');  //for live public hosting
+// mongoose.connect('mongodb://localhost/okcoders');      // for localhost-ing for deveolpment
+mongoose.connect('mongodb://okcoders:okcoders@okcoders.co/shane');  //for live public hosting
 mongoose.Promise = Promise;
 
 var app = express();
