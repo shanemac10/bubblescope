@@ -9,7 +9,12 @@ var ContactEntry = mongoose.model('ContactEntry', {
   street: String,
   city: String,
   state: String,
-  postalCode: String
+  postalCode: String,
+  company: String,
+  title: String,
+  workPhone: String,
+  fax: String,
+  notes: String
 
 });
 

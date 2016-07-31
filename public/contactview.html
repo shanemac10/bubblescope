@@ -6,18 +6,43 @@
   <div class="modal-body">
 
   <div class="media">
-    <div class="media-left media-middle">
+    <div class="media-left media-top">
 
       <img class="media-object img-circle" ng-src="{{thisEntry.image}}" style="height: 160px; margin-bottom:100px">
 
     </div>
 
     <div class="media-body" style="margin-right: 30%">
-      <h4 class="media-heading" ng-if="thisEntry.phone" style="font-size: 1.8em"><small style="color: #999">Phone : </small><br>{{thisEntry.phone}}</h4><br>
-      <h4 class="media-heading" ng-if="thisEntry.email" style="font-size: 1.8em"><small style="color: #999">Email : </small><br><a href="mailto:{{thisEntry.email}}">{{thisEntry.email}}</a></h4><br>
-      <h4 class="media-heading" ng-if="thisEntry.street" style="font-size: 1.8em"><small style="color: #999">Address : </small><br>{{thisEntry.street}}</h4>
-      <h4 class="media-heading" ng-if="thisEntry.city || thisEntry.state || thisEntry.postalCode" style="font-size: 1.8em">{{thisEntry.city}}, {{thisEntry.state}} &nbsp;&nbsp; {{thisEntry.postalCode}}</h4>
+      <h4 class="media-heading" ng-if="thisEntry.phone" style="font-size: 1.8em">
+        <small style="color: #999">Phone : </small><br>{{thisEntry.phone}}
+      </h4><br>
+      <h4 class="media-heading" ng-if="thisEntry.email" style="font-size: 1.8em">
+        <small style="color: #999">Email : </small><br><a href="mailto:{{thisEntry.email}}">{{thisEntry.email}}</a>
+      </h4><br>
+      <h4 class="media-heading" ng-if="thisEntry.street" style="font-size: 1.8em">
+        <small style="color: #999">Address : </small><br>{{thisEntry.street}}
+      </h4>
+      <h4 class="media-heading" ng-if="thisEntry.city || thisEntry.state || thisEntry.postalCode" style="font-size: 1.8em">
+        {{thisEntry.city}}, {{thisEntry.state}} &nbsp;&nbsp; {{thisEntry.postalCode}}
+      </h4>
 
+      <hr ng-if="thisEntry.company || thisEntry.title || thisEntry.workPhone || thisEntry.fax || thisEntry.notes">
+
+      <h4 class="media-heading" ng-if="thisEntry.company" style="font-size: 1.8em">
+        <small style="color: #999">Company : </small><br>{{thisEntry.company}}
+      </h4>
+      <h4 class="media-heading" ng-if="thisEntry.title" style="font-size: 1.8em">
+        <small style="color: #999">Position / Title : </small><br>{{thisEntry.title}}
+      </h4>
+      <h4 class="media-heading" ng-if="thisEntry.workPhone" style="font-size: 1.8em">
+        <small style="color: #999">Work Phone : </small><br>{{thisEntry.workPhone}}
+      </h4>
+      <h4 class="media-heading" ng-if="thisEntry.fax" style="font-size: 1.8em">
+        <small style="color: #999">Fax : </small><br>{{thisEntry.fax}}
+      </h4>
+      <h4 class="media-heading" ng-if="thisEntry.notes" style="font-size: 1.8em">
+        <small style="color: #999">Notes : </small><br>{{thisEntry.notes}}
+      </h4>
 
     </div>
   </div>

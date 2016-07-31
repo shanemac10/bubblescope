@@ -5,47 +5,82 @@
 <div class="modal-body">
   <form name="addForm">
 
-    <div class="form-group">
-      <label>First Name</label>
-      <input type="text" class="form-control" ng-model="newEntry.firstName" required>
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label>First Name</label>
+        <input type="text" class="form-control" ng-model="newEntry.firstName" required>
+      </div>
+
+      <div class="form-group col-xs-6">
+        <label>Last Name</label>
+        <input type="text" class="form-control" ng-model="newEntry.lastName" required>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label>Last Name</label>
-      <input type="text" class="form-control" ng-model="newEntry.lastName" required>
-    </div>
+    <div class="row">
+      <div class="form-group col-xs-4">
+        <label>Phone Number</label>
+        <input type="text" class="form-control" ng-model="newEntry.phone">
+      </div>
 
-    <div class="form-group">
-      <label>Phone Number</label>
-      <input type="text" class="form-control" ng-model="newEntry.phone">
-    </div>
-
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" class="form-control" ng-model="newEntry.email">
+      <div class="form-group col-xs-8">
+        <label>Email</label>
+        <input type="email" class="form-control" ng-model="newEntry.email">
+      </div>
     </div>
 
     <div class="form-group">
       <label>Street Address</label>
-      <input type="email" class="form-control" ng-model="newEntry.street">
+      <input type="text" class="form-control" ng-model="newEntry.street">
     </div>
 
     <div class="row">
       <div class="form-group col-xs-6">
         <label>City</label>
-        <input type="email" class="form-control" ng-model="newEntry.city">
+        <input type="text" class="form-control" ng-model="newEntry.city">
       </div>
 
       <div class="form-group col-xs-3">
         <label>State / Provence</label>
-        <input type="email" class="form-control" ng-model="newEntry.state">
+        <input type="text" class="form-control" ng-model="newEntry.state">
       </div>
 
       <div class="form-group col-xs-3">
         <label>Zip / Postal Code</label>
-        <input type="email" class="form-control" ng-model="newEntry.postalCode">
+        <input type="text" class="form-control" ng-model="newEntry.postalCode">
       </div>
-    </row>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label>Company</label>
+        <input type="text" class="form-control" ng-model="newEntry.company">
+      </div>
+
+      <div class="form-group col-xs-6">
+        <label>Position / Title</label>
+        <input type="text" class="form-control" ng-model="newEntry.title">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xs-4">
+        <label>Work Phone</label>
+        <input type="text" class="form-control" ng-model="newEntry.workPhone">
+      </div>
+
+      <div class="form-group col-xs-4">
+        <label>Fax</label>
+        <input type="text" class="form-control" ng-model="newEntry.fax">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea class="form-control" ng-model="newEntry.notes" rows="3"></textarea>
+    </div>
 
 
   </form>

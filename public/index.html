@@ -181,10 +181,12 @@
 
 
     <div class="jumbotron" style="padding-top: 120px; background-color: #999" ng-if="!jumboHide" ng-click="disappear()">
+
       <div class="container text-center">
         <img src="images/45.png" class="img-circle" style="background-color: white">
-        <h1><span style="color:#00b8ff">Bubble</span><span style="color:white">scope</span></h1>
-        <p style="color:white">Welcome to your personal bubble</p>
+        <h1 style="font-size:10em; font-weight: 600; letter-spacing: -12px"><span style="color:#00b8ff">Bubble</span><span style="color:white">scope</span></h1>
+        <p style="color:#ddd; font-size:3em;">Welcome to your personal bubble</p>
+        <p style="color:#555">Click anywhere to dismiss</p>
       </div>
     </div>
 
@@ -196,11 +198,16 @@
 
           <div class="navbar-right" style="">
 
-            <div class="pull-left" style=" margin: 15px 5px">
+            <!-- <div class="visible-sm-inline navbar-left">
+              <img src="images/45.png" class="img-circle pull-right" style="height: 50px; margin-right: 40px">
+              <span style="color:green">Bubble</span><span style="color:white">scope</span>
+            </div> -->
+
+            <div class="pull-left" style=" margin: 15px 5px" ng-click="addContact()">
               <span class="label hidden-xs" style="font-size: 1.5em; font-weight: 400">
-                Add a bubble...
+                Add more bubble...
               </span>
-              <span class="glyphicon glyphicon-plus" ng-click="addContact()" style="font-size:1.5em; color:white; margin-right: 20px"></span>
+              <span class="glyphicon glyphicon-plus" style="font-size:1.5em; color:white; margin-right: 20px"></span>
             </div>
 
           </form>
@@ -209,7 +216,7 @@
             <form class="navbar-form navbar-right" role="search" style="">
               <div class="form-group pull-left" style=""> <!--needs pull-left-->
                 <span class="label hidden-xs hidden-sm hidden-md" style="background-color:#00b8ff; line-height: 36px; font-size: 1.5em; font-weight: 400">
-                  Search your bubbles...
+                  Search your bubble...
                 </span>
                 <input type="text" class="form-control" ng-model="searchValue.$"  placeholder="Search">
               </div>
@@ -229,7 +236,7 @@
             <!-- <form class="navbar-form navbar-right navbar-nav"> -->
 
               <span class="label hidden-xs hidden-sm" style="background-color:#00b8ff; line-height: 36px; font-size: 1.5em; font-weight: 400; margin-left: 60px; margin-right: -15px">
-                Sort your bubbles...
+                Sort your bubble...
               </span>
 
               <div class="btn-group" role="group" style="font-size: 1.3em; margin: 0 20px">
@@ -251,10 +258,10 @@
     <div  style="width: 80%; margin: 100px auto">
       <!-- <div class="row"> -->
         <div class=""  ng-repeat="entry in entryList | filter:searchValue | orderBy:sortValue:sortReverse">
-          <div class="text-center " ng-click="viewContact(entry)" style="margin: 20px 5px; max-width: 150px; float: left;">
-            <img ng-src="{{entry.image}}" class="img-circle" style="margin-bottom:-18px; height:140px">
+          <div class="text-center " ng-click="viewContact(entry)" style="margin: 20px 25px; max-width: 150px; float: left;">
+            <img ng-src="{{entry.image}}" class="img-circle" style="margin-bottom:-18px; height:140px; width:140px">
             <h3 style="margin-bottom:-2px;">{{entry.firstName}}</h3>
-            <p>{{entry.lastName}}</p>
+            <p style="font-size:1.5em;">{{entry.lastName}}</p>
           </div>
         </div>
       <!-- </div><!End of Row-->
